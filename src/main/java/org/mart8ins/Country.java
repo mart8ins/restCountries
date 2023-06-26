@@ -1,18 +1,23 @@
 package org.mart8ins;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Country {
 
+    private String commonName;
     private BigDecimal population;
     private BigDecimal area;
     private BigDecimal populationDensity;
 
     public Country(){
+    }
+
+    @JsonProperty("name")
+    private void unpackNested(Map<String, Object> name) {
+        this.commonName = (String)name.get("common");
     }
 
     public static Country[] getTop10Countries(Country[] countries, Comparator comparator){
@@ -26,6 +31,10 @@ public class Country {
             sortedCountries[i] = listOfCountries.get(i);
         }
         return sortedCountries;
+    }
+
+    public String getCommonName() {
+        return commonName;
     }
 
     public BigDecimal getPopulation() {
@@ -54,10 +63,10 @@ public class Country {
     @Override
     public String toString() {
         return "Country{" +
+                "commonName='" + commonName + '\'' +
                 ", population=" + population +
                 ", area=" + area +
                 ", populationDensity=" + populationDensity +
                 '}';
     }
-
 }
