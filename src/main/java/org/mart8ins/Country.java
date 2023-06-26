@@ -8,6 +8,13 @@ import java.util.List;
 
 public class Country {
 
+    private BigDecimal population;
+    private BigDecimal area;
+    private BigDecimal populationDensity;
+
+    public Country(){
+    }
+
     public static Country[] getTop10Countries(Country[] countries, Comparator comparator){
         List<Country> listOfCountries = new ArrayList<>();
         for(int i = 0; i < countries.length; i++) {
@@ -21,17 +28,6 @@ public class Country {
         return sortedCountries;
     }
 
-    private Name name;
-    private BigDecimal population;
-    private BigDecimal area;
-    private BigDecimal populationDensity;
-
-    public Country(){
-    }
-
-    public Name getName() {
-        return name;
-    }
     public BigDecimal getPopulation() {
         return population;
     }
@@ -58,7 +54,6 @@ public class Country {
     @Override
     public String toString() {
         return "Country{" +
-                "name=" + name +
                 ", population=" + population +
                 ", area=" + area +
                 ", populationDensity=" + populationDensity +
